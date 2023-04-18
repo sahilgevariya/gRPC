@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.calc.app";
+
+message NumberRequest {
+  int32 number = 1;
+}
+message CalcRequest {
+  int32 a = 1;
+  int32 b = 2;
+}
+
+message CalcResponse {
+  float answer = 1;
+}
+
+enum Types {
+  UNKNOWN = 0;
+  INTEGER = 1;
+  STRING = 2;
+  FLOAT = 3;
+  D_O_B = 4;
+}
+
+message DOB {
+  int32 day = 1;
+  int32 month = 2;
+  int32 year = 3;
+}
+
+message TypeRequest {
+  oneof Type {
+    int32 num = 1;
+    string name = 2;
+    float f_num = 3;
+    DOB dob = 4;
+  }
+}
+
+message TypeResponse {
+  Types type = 1;
+}

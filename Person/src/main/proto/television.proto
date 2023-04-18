@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.person.details";
+
+import "google/protobuf/wrappers.proto";
+
+// Version - v1
+//message Television {
+//  string brand = 1;
+//  int32 year = 2;
+//}
+
+// v2
+//enum Type {
+//  HD = 0;
+//  UHD = 1;
+//  OLED = 2;
+//}
+//
+//message Television {
+//  string brand = 1;
+//  int32 model = 2;
+//  Type type = 3;
+//}
+
+// v3
+//enum Type {
+//  HD = 0;
+//  UHD = 1;
+//  OLED = 2;
+//}
+//
+//message Television {
+//  string brand = 1;
+//  Type type = 3;
+//}
+
+// v4
+enum Type {
+  HD = 0;
+  UHD = 1;
+  OLED = 2;
+}
+
+message Television {
+  string brand = 1;
+
+  reserved 2;             // so it'll not cause any problem whenever addition of field in place
+  reserved "year","model";  // of old deleted field tag number/name
+
+  int32 price = 4;    // To check if price is set then we have to use Wrapper-types
+                      // 'cause it has a method called hasXXX() to check
+
+  // e.g using of Wrapper Type
+//  google.protobuf.Int32Value price = 4;
+  Type type = 3;
+}

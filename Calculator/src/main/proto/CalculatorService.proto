@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.calc.app";
+
+import "Messages.proto";
+
+service CalculatorService {
+  rpc doSum(CalcRequest) returns (CalcResponse);
+  rpc doSubtraction(CalcRequest) returns (CalcResponse);
+  rpc doMul(CalcRequest) returns (CalcResponse);
+  rpc doDivide(CalcRequest) returns (CalcResponse);
+
+  rpc streamSum(stream CalcRequest) returns (stream CalcResponse);
+  rpc totalSum(stream CalcRequest) returns (CalcResponse);
+
+  rpc getFactors(NumberRequest) returns (stream CalcResponse);
+
+  rpc getType(stream TypeRequest) returns (stream TypeResponse);
+}

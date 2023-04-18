@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.person.details";
+
+
+message Address{
+  int32 pincode = 1;
+  string city = 2;
+}
+
+message Car{
+  string model = 1;
+  int32 year = 2;
+}
+
+message Dealer{
+  map<int32, Car> model = 1;
+}
+
+message Person{
+  string name = 1;
+  int32 age = 2;
+  Address address = 3;
+  repeated Car car = 4;
+}
